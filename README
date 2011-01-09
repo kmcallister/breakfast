@@ -1,0 +1,6 @@
+breakfast is a minimal breakpoints library for x86 Linux.
+
+It is for illustration purposes only.  It lacks important features such as
+detaching and error handling.
+
+This code is released under the BSD license.  See LICENSE for details.
