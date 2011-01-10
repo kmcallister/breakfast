@@ -40,7 +40,7 @@ void parent(pid_t pid) {
   while (breakfast_run(pid, last_break)) {
     last_ip = breakfast_getip(pid);
     if (last_ip == fact_ip) {
-#if defined(__amd64)
+#if defined(__x86_64)
       int arg = ptrace(PTRACE_PEEKUSER, pid, sizeof(long)*RDI);
       printf("Break at fact(%d)\n", arg);
 #else
