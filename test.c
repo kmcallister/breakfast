@@ -2,7 +2,6 @@
 #include <signal.h>
 #include <unistd.h>
 #include <stdio.h>
-#include <string.h>
 
 // only needed for reading fact() arguments
 #include <sys/ptrace.h>
