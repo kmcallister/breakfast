@@ -6,6 +6,7 @@
 // only needed for reading fact() arguments
 #include <sys/ptrace.h>
 #include <sys/reg.h>
+#include <sys/user.h>
 
 #include "breakfast.h"
 
@@ -42,10 +43,12 @@ void parent(pid_t pid) {
     if (last_ip == fact_ip) {
 #if defined(__x86_64)
       int arg = ptrace(PTRACE_PEEKUSER, pid, sizeof(long)*RDI);
-      printf("Break at fact(%d)\n", arg);
 #else
-      printf("Break at fact()\n");
+      struct user_regs_struct s;
+      ptrace(PTRACE_GETREGS, pid, 0, &s); 
+      int arg = ptrace(PTRACE_PEEKDATA, pid, sizeof(long) + s.esp);
 #endif
+      printf("Break at fact(%d)\n", arg);
       last_break = fact_break;
     } else {
       printf("Unknown trap at %p\n", last_ip);
