@@ -1,3 +1,3 @@
 #!/bin/sh
 
-gcc -Wall -o test test.c breakfast.c
+gcc "$@" -Wall -o test test.c breakfast.c
